@@ -4,6 +4,7 @@ from flask_login import login_user, logout_user, login_required
 from flask_login import logout_user
 from Project.Models.models import Users, Roles
 from datetime import datetime as dt
+from Project import db
 
 
 guest = Blueprint('guest', __name__,template_folder='guest_template',static_folder='guest_static', url_prefix='/guest')

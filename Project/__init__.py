@@ -23,14 +23,12 @@ def create_app():
     #SQLALCHEMY DATABASE URI Format         'db+driver://username:password@host/name_of_db'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://phpmyadmin:root@127.0.0.1/db_urlcheck'
 
-    # For freemysqlhosting.net
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql12311054:j6vcg7VTx7@sql12.freemysqlhosting.net/sql12311054'
+    # For Sqlite3 db
+    # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_urlcheck.sqlite3'
 
-    # For AMPPS
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@127.0.0.1/db_project'
 
     db.init_app(app)
-    migrate.init_app(app)
+    migrate.init_app(app, db)
     login_manager = LoginManager()
     login_manager.login_view = 'guest.login'
     login_manager.init_app(app)
@@ -61,4 +59,4 @@ def create_app():
 
     return app, admin
 
-app = create_app()
+# app = create_app()
