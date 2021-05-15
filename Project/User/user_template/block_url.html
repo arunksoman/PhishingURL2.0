@@ -1,0 +1,45 @@
+{% extends 'user_layout.html' %}
+{% block head %}
+    <title>Block URL</title>
+{% endblock head %}
+
+
+{% block body %}
+    {% if current_user.is_authenticated %}
+    <div class="w3-container" style="width:300px">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="w3-panel w3-red w3-display-container" style="margin-bottom:0px">
+                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                    <h6>{{ messages[0] }}</h6>
+                </div>
+          {% endif %}
+        {% endwith %}
+        <div class="w3-card-4" style="margin-bottom: 25px;">
+            <div class="w3-container w3-teal">
+            <h2 class="w3-center">Block URL</h2>
+        </div>
+        <form action="block_url" autocomplete="off" method="post" class="w3-container w3-padding">
+            <label for="">Enter URL</label>
+            <input class="w3-input" type="text" required name="url_address" id="name">
+            <input type="submit" value="Block URL" class="w3-button w3-red w3-round-xxlarge" style="margin-top: 10px">
+            </div>
+        </div>
+        <table class="w3-table w3-centered w3-striped">
+            <thead>
+                <th>Sl No</th>
+                <th>Blocked URL</th>
+                <th>Remove</th>
+            </thead>
+            {% for urls in all_blocked %}
+            <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ urls.black_url }}</td>
+                    <td><a href = "{{ url_for('user.dataRemove', dprimary=urls.id ) }}" class="w3-small w3-button w3-red w3-round-xxlarge">Remove</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <h4>Please Login First</h4>
+    {% endif %}
+{% endblock body %}

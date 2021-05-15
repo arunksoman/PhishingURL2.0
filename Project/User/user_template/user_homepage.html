@@ -1,0 +1,37 @@
+{% extends 'user_layout.html' %}
+{% block head %}
+    <title>Home Page</title>
+    <style>
+        input[type="text"]{
+            width: 800px;
+            border: 1px solid teal;
+            padding: 20px;
+            font-size: 20px;
+            text-align: center;
+            height: 40px;
+            border-radius: 100px 100px 100px 100px;
+        }
+        input[type="submit"]{
+            margin: 15px;
+            border: none;
+            color: #ffffff;
+            padding: 10px 30px 10px 30px;
+            border-radius: 100px 100px 100px 100px;
+            cursor: pointer;
+        }
+    </style>
+    </style>
+{% endblock head %}
+
+
+{% block body %}
+    {% if current_user.is_authenticated %}
+        <!-- <h4>Welcome {{ current_user.username }}</h4> -->
+        <form autocomplete="off" method="post" action="{{ url_for('user.url_check') }}">
+            <input class="mdinput" type="text" name="url" placeholder="Enter URL..." id="">
+            <input class="mdsubmit" type="submit" class="w3-large w3-teal" value="Submit">
+        </form>
+        {% else %}
+            <h4>Please Login First</h4>
+    {% endif %}
+{% endblock body %}

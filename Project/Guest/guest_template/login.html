@@ -1,0 +1,34 @@
+{% extends 'guest_layout.html' %}
+    {% block head %}
+        <title>Login</title>
+    {% endblock head %}
+
+    {% block body %}
+    
+        <div class="w3-container" style="width:300px">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="w3-panel w3-red w3-display-container" style="margin-bottom:0px">
+                        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                        <h6>{{ messages[0] }}</h6>
+                    </div>
+              {% endif %}
+            {% endwith %}
+            <div class="w3-card-4">
+                <div class="w3-container w3-teal">
+                <h2 class="w3-center">Login</h2>
+            </div>
+            <form action="login" method="post" autocomplete="off" class="w3-container">
+                <label>Email</label>
+                <input class="w3-input" type="text" name="email" required id="email">
+
+                <label>Password</label>
+                <input class="w3-input" type="password" name="password" required id="password">
+
+                <label>Remember Me</label>
+                <input type="checkbox" class="w3-check">
+                <input type="submit" class="w3-btn w3-teal w3-small" style="margin-bottom: 10px;display:block; margin:10px 0 10px 0" value="Submit">
+            </form>
+        </div>
+    </div>
+    {% endblock %}

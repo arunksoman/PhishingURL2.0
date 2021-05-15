@@ -1,0 +1,22 @@
+{% extends 'user_layout.html' %}
+{% block head %}
+    <title>Home Page</title>
+{% endblock head %}
+
+
+{% block body %}
+    {% if current_user.is_authenticated %}
+        <!-- <h4>Welcome {{ current_user.username }}</h4> -->
+        {% if url == 'malicious' %}
+            <img src="{{ url_for('user.static', filename='bummer.svg') }}" />
+            <p class="{{ css_class }}">It is most probably a Malicious URL</p>
+        {% endif %}
+        {% if url == 'benign' %}
+            <img src="{{ url_for('user.static', filename='tick.svg') }}" />
+            <p class="{{ css_class }}">It is most probably a Benign URL</p>
+            <a class="w3-button w3-green" href={{ user_url }} target="_blank">Do you want to go?</a>
+        {% endif %}
+        {% else %}
+            <h4>Please Login First</h4>
+    {% endif %}
+{% endblock body %}

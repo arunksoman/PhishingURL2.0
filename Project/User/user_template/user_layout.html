@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('user.static', filename='w3.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {font-family: "Lato", sans-serif}
+        .mySlides {display: none}
+        .mdinput{
+            width: 800px;
+            border: 2px solid teal;
+            padding: 20px;
+            font-size: 20px;
+            text-align: center;
+            height: 40px;
+            border-radius: 100px 100px 100px 100px;
+        }
+        .mdsubmit{
+            margin: 15px;
+            border: none;
+            background-color: teal;
+            color: #ffffff;
+            padding: 10px 30px 10px 30px;
+            border-radius: 100px 100px 100px 100px;
+            cursor: pointer;
+        }
+        </style>
+    {% block head %}
+
+    {% endblock head %}
+</head>
+<body>
+    {% block navbar %}
+        <!-- Navbar -->
+        <div class="w3-top">
+            <div class="w3-bar w3-teal w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+                
+                <!-- <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROFILE</a> -->
+                <!-- <div class="w3-dropdown-hover w3-hide-small w3-right" style="margin-right: 35px">
+                    <button class="w3-padding-large w3-button" title="More">SETTINGS <i class="fa fa-caret-down"></i></button>     
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="#" class="w3-bar-item w3-button">Edit Profile</a>
+                        <a href="#" class="w3-bar-item w3-button">Change Password</a>
+                        <a href="#" class="w3-bar-item w3-button">View Profile</a>
+                    </div>
+                </div> -->
+                <a href="{{ url_for('main.logout') }}" class="w3-bar-item w3-button w3-padding-large w3-right">LOGOUT</a>
+                <a href="block_url" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right">Black List</a>
+                <a href="homepage" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right">CHECK URL</a>
+                <a href="homepage" class="w3-bar-item w3-button w3-padding-large w3-right">HOME</a>
+
+                <!-- <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a> -->
+            </div>
+        </div>
+        
+        <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+        <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+            <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Home</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CHECK URL</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT US</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">View Profile</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Edit Profile</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Change Password</a>
+        </div>
+  
+    {% endblock navbar %}
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px; min-height: 700px">
+        <div class="w3-display-middle">
+                {% block body %}
+                    
+                {% endblock body %}
+        </div>
+    </div>
+    {% block footer %}
+        <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-teal w3-xlarge">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+            <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+        </footer>
+        
+        <script>
+        // Automatic Slideshow - change image every 4 seconds
+        var myIndex = 0;
+        carousel();
+        
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}    
+            x[myIndex-1].style.display = "block";  
+            setTimeout(carousel, 4000);    
+        }
+        
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            } else { 
+            x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById('ticketModal');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+            modal.style.display = "none";
+            }
+        }
+        </script>
+    {% endblock footer %}
+</body>
+</html>
